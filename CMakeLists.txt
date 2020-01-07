@@ -1,7 +1,14 @@
 cmake_minimum_required(VERSION 3.15)
-project(quantu_simulator C)
+project(qs)
 
-set(CMAKE_C_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 
-add_executable(quantu_simulator main.c)
-target_link_libraries(quantu_simulator m)
+add_library(
+        quantumSimulator STATIC
+        lib/quantum.h
+        lib/quantum.cpp
+)
+
+add_executable(qs main.cpp)
+
+target_link_libraries(qs quantumSimulator)

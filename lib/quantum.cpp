@@ -1,13 +1,12 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "quantum.h"
 #include <math.h>
+#include <iostream>
 
 struct QuantumComputer {
     int registerSize;
     double *probability;
     int baseVectorsCount;
 };
-
 
 int integerToBinary(int num) {
     if (num == 0) {
@@ -42,7 +41,6 @@ void validateArraySize(double probability[], int regSize) {
         printf("[ERROR] Invalid Register arr with []Probability");
         exit(1);
     }
-
 }
 
 void validateProbability(double probability[], int regSize) {
@@ -63,20 +61,20 @@ struct QuantumComputer initialQuantumRegisters(int regSize, double probability[]
     validateProbability(probability, regSize);
 
     struct QuantumComputer quantumComputer = {
-            .baseVectorsCount = calculateBaseVectorCount(probability, regSize),
             .registerSize = regSize,
-            .probability = probability
+            .probability = probability,
+            .baseVectorsCount = calculateBaseVectorCount(probability, regSize)
     };
 
     return quantumComputer;
 }
 
 void viewProbability(struct QuantumComputer *qc) {
-    printf("\nVector with probabilities {");
+    std::cout << "\nVector with probabilities {";
     for (int i = 0; i < (int) pow(qc->registerSize, 2); i++) {
         printf("[%.4f]", qc->probability[i]);
     }
-    printf("}\n");
+    std::cout << "}\n";
 }
 
 void viewQubitInMathExpression(struct QuantumComputer *qc) {
@@ -84,16 +82,19 @@ void viewQubitInMathExpression(struct QuantumComputer *qc) {
 
     for (int i = 0; i < (int) pow(qc->registerSize, 2); i++) {
         if (qc->probability[i] != 0) {
-            printf("%.4f|%d> ", qc->probability[i], integerToBinary(i));
+            if(qc->probability[i] == 1.00) {
+                printf("|%d> ", integerToBinary(i));
+            } else {
+                printf("%.4f |%d> ", qc->probability[i], integerToBinary(i));
+            }
         }
     }
 }
 
-int main() {
+void quantum::simulate() {
     int registerSize = 2;
     double probability[] = {0, 0, 1, 0};
     struct QuantumComputer qc = initialQuantumRegisters(registerSize, probability);
     viewQubitInMathExpression(&qc);
     viewProbability(&qc);
-    return 0;
 }
