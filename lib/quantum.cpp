@@ -30,14 +30,13 @@ int calculateBaseVectorCount(double probability[], int regSize) {
     return count;
 }
 
-void validateArraySize(double probability[], int regSize) {
+void validateArraySize(int arrSize, int regSize) {
     if (regSize < 1) {
         printf("[ERROR] Register size cannot be less than 1");
         exit(1);
     }
 
-    auto n = sizeof(probability);
-    if (n != pow(regSize, 2)) {
+    if (arrSize != pow(regSize, 2)) {
         printf("[ERROR] Invalid Register arr with []Probability");
         exit(1);
     }
@@ -56,8 +55,8 @@ void validateProbability(double probability[], int regSize) {
     }
 }
 
-struct QuantumComputer initialQuantumRegisters(int regSize, double probability[]) {
-    validateArraySize(probability, regSize);
+struct QuantumComputer initialQuantumRegisters(int regSize, double probability[],int arrSize) {
+    validateArraySize(arrSize, regSize);
     validateProbability(probability, regSize);
 
     struct QuantumComputer quantumComputer = {
@@ -93,8 +92,9 @@ void viewQubitInMathExpression(struct QuantumComputer *qc) {
 
 void quantum::simulate() {
     int registerSize = 2;
-    double probability[] = {0, 0, 1, 0};
-    struct QuantumComputer qc = initialQuantumRegisters(registerSize, probability);
+    double probability[] = {0.0, 0.0, 1.0, 0.0 };
+    auto arrSize = std::size(probability);
+    struct QuantumComputer qc = initialQuantumRegisters(registerSize, probability,arrSize);
     viewQubitInMathExpression(&qc);
     viewProbability(&qc);
 }
