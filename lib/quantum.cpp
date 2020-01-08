@@ -36,7 +36,7 @@ void validateArraySize(double probability[], int regSize) {
         exit(1);
     }
 
-    int n = sizeof((int) probability);
+    auto n = sizeof(probability);
     if (n != pow(regSize, 2)) {
         printf("[ERROR] Invalid Register arr with []Probability");
         exit(1);
