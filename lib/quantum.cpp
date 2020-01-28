@@ -7,10 +7,10 @@ struct QuantumComputer {
     int registerSize;
     int baseVectorsCount;
     bool isNormalize;
-    bool isMeasured ;
+    bool isMeasured;
     std::vector<double> baseVector;
 
-    QuantumComputer(int regSize, double probability[],int arrSize){
+    QuantumComputer(int regSize, double probability[], int arrSize) {
         this->registerSize = regSize;
         this->baseVectorsCount = 0;
         this->isNormalize = false;
@@ -18,7 +18,7 @@ struct QuantumComputer {
 
         validateArraySize(arrSize, regSize);
 
-        for(int i =0 ; i< arrSize; i++){
+        for (int i = 0; i < arrSize; i++) {
             baseVector.push_back(probability[i]);
         };
 
@@ -26,8 +26,9 @@ struct QuantumComputer {
         countNonZeroBaseVector();
 
     };
+
     void countNonZeroBaseVector() {
-        for(auto x: this->baseVector){
+        for (auto x: this->baseVector) {
             if ((double) x != 0.0) {
                 this->baseVectorsCount++;
             }
@@ -35,8 +36,8 @@ struct QuantumComputer {
     }
 
     void resetState() {
-        std::vector<double> :: iterator it;
-        for(it = this->baseVector.begin(); it< this->baseVector.end(); it++) {
+        std::vector<double>::iterator it;
+        for (it = this->baseVector.begin(); it < this->baseVector.end(); it++) {
             *it = 0.0;
         }
         this->baseVector.at(0) = 1;
@@ -61,11 +62,11 @@ struct QuantumComputer {
     }
 
     void viewQubitInMathExpression() {
-        if(!this->isNormalize){
-            std::cout<<"Base Vector is not in normalize state. To view qubit you should normalize it before.  Use .normalize() function for that"<<std::endl;
-        }
-
-        else {
+        if (!this->isNormalize) {
+            std::cout
+                    << "Base Vector is not in normalize state. To view qubit you should normalize it before.  Use .normalize() function for that"
+                    << std::endl;
+        } else {
             printf("\nQubit in expression: ");
             int i = 0;
             for (auto x: this->baseVector) {
@@ -73,9 +74,25 @@ struct QuantumComputer {
                     int binary = integerToBinary(i);
 //                    std::string binaryStringValue = std::to_string(binary);  TODO: Refactor printing of qubit in qxpression  for register(2) -> |00> not |0>
                     if (x == 1.00) {
-                        printf("|%d> ", binary);
+                        if (binary == 0) {
+                            std::string tmp = "";
+                            for (int i = 0; i < this->registerSize; i++) {
+                                tmp += "0";
+                            }
+                            std::cout << "|" << tmp << ">";
+                        } else {
+                            printf("|%d> ", binary);
+                        }
                     } else {
-                        printf("%.4f |%d> ", x, binary);
+                        if (binary == 0) {
+                            std::string tmp = "";
+                            for (int i = 0; i < this->registerSize; i++) {
+                                tmp += "0";
+                            }
+                            std::cout << "|" << tmp << ">";
+                        } else {
+                            printf("%.4f |%d> ", x, binary);
+                        }
                     }
                 }
 
@@ -99,8 +116,8 @@ struct QuantumComputer {
     void validateProbability() {
         double result = 0.0;
 
-        for(auto x: this->baseVector){
-            result += pow(sqrt(fabs(x)),2);
+        for (auto x: this->baseVector) {
+            result += pow(sqrt(fabs(x)), 2);
         }
 
         if (result != 1.0) {
@@ -113,13 +130,13 @@ struct QuantumComputer {
     }
 
     // TODO:  DO IT
-    void normalizeRegister(){
-        std::cout<<"[Here will be function to normalize vector!]"<<std::endl;
+    void normalizeRegister() {
+        std::cout << "[Here will be function to normalize vector!]" << std::endl;
     }
 
     // TODO:  DO IT
-    void measure(){
-        std::cout<<"[Here will be function to measure register!]"<<std::endl;
+    void measure() {
+        std::cout << "[Here will be function to measure register!]" << std::endl;
 
         this->isMeasured = true;
     }
@@ -128,9 +145,9 @@ struct QuantumComputer {
 
 void quantum::simulate() {
     int registerSize = 2;
-    double probability[] = {0.0, 0.0, 1.0, 0.0 };
+    double probability[] = {0.0, 0.0, 1.0, 0.0};
     auto arrSize = std::size(probability);
-    struct QuantumComputer qc =  QuantumComputer(registerSize, probability,arrSize);
+    struct QuantumComputer qc = QuantumComputer(registerSize, probability, arrSize);
 
 
     qc.resetState();
