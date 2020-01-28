@@ -112,8 +112,16 @@ struct QuantumComputer {
 
     }
 
+    // TODO:  DO IT
     void normalizeRegister(){
         std::cout<<"[Here will be function to normalize vector!]"<<std::endl;
+    }
+
+    // TODO:  DO IT
+    void measure(){
+        std::cout<<"[Here will be function to measure register!]"<<std::endl;
+
+        this->isMeasured = true;
     }
 };
 
