@@ -1,5 +1,5 @@
 #include "quantum.h"
-#include <math.h>
+#include <cmath>
 #include <iostream>
 #include <vector>
 
@@ -76,7 +76,7 @@ struct QuantumComputer {
                     if (x == 1.00) {
                         if (binary == 0) {
                             std::string tmp = "";
-                            for (int i = 0; i < this->registerSize; i++) {
+                            for (int j = 0; j < this->registerSize; j++) {
                                 tmp += "0";
                             }
                             std::cout << "|" << tmp << ">";
@@ -86,7 +86,7 @@ struct QuantumComputer {
                     } else {
                         if (binary == 0) {
                             std::string tmp = "";
-                            for (int i = 0; i < this->registerSize; i++) {
+                            for (int j = 0; j < this->registerSize; j++) {
                                 tmp += "0";
                             }
                             std::cout << "|" << tmp << ">";
