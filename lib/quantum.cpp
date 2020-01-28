@@ -136,6 +136,10 @@ struct QuantumComputer {
 
     // TODO:  DO IT
     void measure() {
+        if(this->isMeasured){
+            std::cout<<"U cannot measure collapsed qubit"<<std::endl;
+            return;
+        }
         std::cout << "[Here will be function to measure register!]" << std::endl;
 
         this->isMeasured = true;
