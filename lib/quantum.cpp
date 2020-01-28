@@ -68,6 +68,14 @@ struct QuantumComputer initialQuantumRegisters(int regSize, double probability[]
     return quantumComputer;
 }
 
+void resetRegister(struct QuantumComputer *qc) {
+    for (int i = 0; i < (int) pow(qc->registerSize, 2); i++) {
+        qc->probability[i] = 0.0;
+    };
+
+    qc->probability[0] = 1.0;
+}
+
 void viewProbability(struct QuantumComputer *qc) {
     std::cout << "\nVector with probabilities {";
     for (int i = 0; i < (int) pow(qc->registerSize, 2); i++) {
@@ -96,5 +104,7 @@ void quantum::simulate() {
     auto arrSize = std::size(probability);
     struct QuantumComputer qc = initialQuantumRegisters(registerSize, probability,arrSize);
     viewQubitInMathExpression(&qc);
+    viewProbability(&qc);
+    resetRegister(&qc);
     viewProbability(&qc);
 }
