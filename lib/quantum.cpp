@@ -129,7 +129,6 @@ struct QuantumComputer {
 
     }
 
-    // TODO:  DO IT
     void normalizeRegister() {
         double vectorLength = 0.0;
 
