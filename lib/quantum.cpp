@@ -131,7 +131,21 @@ struct QuantumComputer {
 
     // TODO:  DO IT
     void normalizeRegister() {
-        std::cout << "[Here will be function to normalize vector!]" << std::endl;
+        double vectorLength = 0.0;
+
+        for (auto x: this->baseVector) {
+            vectorLength += pow(x, 2);
+        }
+
+        vectorLength = sqrt(vectorLength);
+        std::vector<double>::iterator it;
+
+        for (it = this->baseVector.begin(); it < this->baseVector.end(); it++) {
+            *it = *it/vectorLength;
+        }
+
+        this->isNormalize = true;
+
     }
 
     // TODO:  DO IT
@@ -149,12 +163,11 @@ struct QuantumComputer {
 
 void quantum::simulate() {
     int registerSize = 2;
-    double probability[] = {0.0, 0.0, 1.0, 0.0};
+    double probability[] = {4.0, 0.0, 3.0, 0.0};
     auto arrSize = std::size(probability);
     struct QuantumComputer qc = QuantumComputer(registerSize, probability, arrSize);
 
-
-    qc.resetState();
+    qc.normalizeRegister();
     qc.viewProbability();
     qc.viewQubitInMathExpression();
 }
