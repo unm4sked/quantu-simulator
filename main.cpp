@@ -5,9 +5,9 @@ using namespace quantum;
 
 int main() {
 
-
     int numberOfQubits = 2;
     double probability[] = {4.0, 0.0, 3.0, 0.0};
+
     auto arrSize = std::size(probability);
     struct QuantumComputer qc = QuantumComputer(numberOfQubits, probability, arrSize);
 
