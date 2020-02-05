@@ -54,7 +54,7 @@ void quantum::QuantumComputer::viewProbability() {
     std::cout << "}\n";
 }
 
-void quantum::QuantumComputer::viewQubitInMathExpression() {
+void quantum::QuantumComputer::viewQubitsInMathExpression() {
     if (!this->isNormalize) {
         std::cout
                 << "Base Vector is not in normalize state. To view qubit you should normalize it before.  Use .normalize() function for that"
@@ -65,7 +65,7 @@ void quantum::QuantumComputer::viewQubitInMathExpression() {
         for (auto x: this->baseVector) {
             if (x != 0) {
                 int binary = integerToBinary(i);
-//                    std::string binaryStringValue = std::to_string(binary);  TODO: Refactor printing of qubit in qxpression  for register(2) -> |00> not |0>
+//                    std::string binaryStringValue = std::to_string(binary);  TODO: Refactor printing of qubit in expression  for register(2) -> |00> not |0>
                 if (x == 1.00) {
                     if (binary == 0) {
                         std::string tmp = "";

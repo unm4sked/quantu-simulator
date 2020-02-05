@@ -19,7 +19,7 @@ namespace quantum {
 
         void viewProbability();
 
-        void viewQubitInMathExpression();
+        void viewQubitsInMathExpression();
 
         static void validateArraySize(int arrSize, int regSize);
 
