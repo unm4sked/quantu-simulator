@@ -100,7 +100,7 @@ void quantum::QuantumComputer::validateArraySize(int arrSize, int regSize) {
         exit(1);
     }
 
-    if (arrSize != pow(regSize, 2)) {
+    if (arrSize != pow(2,regSize)) {
         printf("[ERROR] Invalid Register arr with []Probability");
         exit(1);
     }
