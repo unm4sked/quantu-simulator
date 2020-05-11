@@ -2,6 +2,7 @@
 #define UNTITLED_QUANTUM_H
 
 #include <vector>
+#include <string>
 
 namespace quantum {
     struct QuantumComputer {
@@ -13,13 +14,23 @@ namespace quantum {
 
         QuantumComputer(int regSize, double probability[], int arrSize);
 
+        QuantumComputer(int noQubits);
+
         void countNonZeroBaseVector();
+
+        void extendRegister(int size);
+
+        void setValueInRegister(int arrayIndex, double value);
+
+        void displayInfo();
 
         void resetState();
 
-        void viewProbability();
+        void viewValuesInBaseVector();
 
-        void viewQubitsInMathExpression();
+        void viewProbabilityForBaseVector();
+
+        void viewQubitsInDiracNotation();
 
         static void validateArraySize(int arrSize, int regSize);
 
