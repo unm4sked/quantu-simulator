@@ -12,9 +12,7 @@ namespace quantum {
         bool isMeasured;
         std::vector<double> baseVector;
 
-        QuantumComputer(int regSize, double probability[], int arrSize);
-
-        QuantumComputer(int noQubits);
+        QuantumComputer(int regSize, double array[], int arrSize);
 
         void countNonZeroBaseVector();
 

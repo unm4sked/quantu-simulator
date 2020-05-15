@@ -5,7 +5,7 @@
 #include <string>
 
 
-quantum::QuantumComputer::QuantumComputer(int regSize, double probability[], int arrSize) {
+quantum::QuantumComputer::QuantumComputer(int regSize, double array[], int arrSize) {
     this->registerSize = regSize;
     this->baseVectorsCount = 0;
     this->isNormalize = false;
@@ -14,18 +14,11 @@ quantum::QuantumComputer::QuantumComputer(int regSize, double probability[], int
     validateArraySize(arrSize, regSize);
 
     for (int i = 0; i < arrSize; i++) {
-        baseVector.push_back(probability[i]);
+        baseVector.push_back(array[i]);
     };
 
     validateProbability();
     countNonZeroBaseVector();
-}
-
-quantum::QuantumComputer::QuantumComputer(int noQubits) {
-    this->registerSize = noQubits;
-    this->baseVectorsCount = 0;
-    this->isNormalize = false;
-    this->isMeasured = false;
 }
 
 void quantum::QuantumComputer::countNonZeroBaseVector() {

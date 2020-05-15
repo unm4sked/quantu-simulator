@@ -9,6 +9,7 @@ int main() {
     int numberOfQubits = 1;
     double base[] = {0.0, 1.0};
     auto arrSize = std::size(base);
+    std::cout<<arrSize<<std::endl;
     struct QuantumComputer qc =
             QuantumComputer(numberOfQubits, base, arrSize);
     qc.resetState();
