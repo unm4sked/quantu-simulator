@@ -1,21 +1,21 @@
 #include <iostream>
+#include <cmath>
 #include "lib/quantum.h"
 
 using namespace quantum;
 
 int main() {
 
-    int numberOfQubits = 3;
-    double probability[] = {4.0, 0.0, 3.0, 0.0, 4.0, 0.0, 3.0, 0.0};
-
-    auto arrSize = std::size(probability);
-    struct QuantumComputer qc = QuantumComputer(numberOfQubits, probability, arrSize);
-
-    qc.normalizeRegister();
-    qc.viewProbability();
+    int numberOfQubits = 1;
+    double base[] = {0.0, 1.0};
+    auto arrSize = std::size(base);
+    std::cout<<arrSize<<std::endl;
+    struct QuantumComputer qc =
+            QuantumComputer(numberOfQubits, base, arrSize);
     qc.resetState();
-    qc.viewProbability();
-    qc.viewQubitsInMathExpression();
+    qc.setValueInRegister(0, 1 / (sqrt(2)));
+    qc.setValueInRegister(1, 1 / (sqrt(2)));
+    qc.viewProbabilityForBaseVector();
 
     return 0;
 }

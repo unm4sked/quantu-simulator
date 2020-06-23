@@ -2,6 +2,7 @@
 #define UNTITLED_QUANTUM_H
 
 #include <vector>
+#include <string>
 
 namespace quantum {
     struct QuantumComputer {
@@ -11,15 +12,23 @@ namespace quantum {
         bool isMeasured;
         std::vector<double> baseVector;
 
-        QuantumComputer(int regSize, double probability[], int arrSize);
+        QuantumComputer(int regSize, double array[], int arrSize);
 
         void countNonZeroBaseVector();
 
+        void extendRegister(int size);
+
+        void setValueInRegister(int arrayIndex, double value);
+
+        void displayInfo();
+
         void resetState();
 
-        void viewProbability();
+        void viewValuesInBaseVector();
 
-        void viewQubitsInMathExpression();
+        void viewProbabilityForBaseVector();
+
+        void viewQubitsInDiracNotation();
 
         static void validateArraySize(int arrSize, int regSize);
 
